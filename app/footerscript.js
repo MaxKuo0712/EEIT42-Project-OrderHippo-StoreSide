@@ -54,7 +54,7 @@ window.onbeforeunload = () => {
 
 if (localStorage.getItem('storeinfo')) {
     websocket.onmessage = (e) => {
-        // console.log(e.data);
+        console.log(e.data);
         receiveMsg(e.data);
     }
     if (!JSON.parse(localStorage.getItem('receiveMsg')) || JSON.parse(localStorage.getItem('receiveMsg')).length == 0) {
@@ -97,7 +97,6 @@ function sednMessage(sendMsg, orderID) {
 
 // 收到訊息，確認有一筆新訂單後需要做什麼事情
 function receiveMsg(message) {
-    console.log('AAAA'+message);
     let msg = message.split('#')[0];
     let orderID = message.split('#')[1];
     let paymentID = message.split('#')[2];
@@ -107,7 +106,6 @@ function receiveMsg(message) {
     let bellValue = document.querySelector("#bellValue");
 
     if (msg == "有一筆新訂單") {
-        console.log(message);
         let receiveInfo = JSON.parse(localStorage.getItem('receiveMsg')) || [];
         receiveInfo.push(receiveMessage);
         localStorage.setItem("receiveMsg", JSON.stringify(receiveInfo));
