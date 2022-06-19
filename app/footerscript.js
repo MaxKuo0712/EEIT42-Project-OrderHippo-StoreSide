@@ -97,6 +97,7 @@ function sednMessage(sendMsg, orderID) {
 
 // 收到訊息，確認有一筆新訂單後需要做什麼事情
 function receiveMsg(message) {
+    console.log('AAAA'+message);
     let msg = message.split('#')[0];
     let orderID = message.split('#')[1];
     let paymentID = message.split('#')[2];
