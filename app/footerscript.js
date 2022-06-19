@@ -185,7 +185,7 @@ document.getElementById("bell").addEventListener("click", () => {
     }
 });
 
-$('#btnGroupDrop1 i').on('click', function () {
+$('#bell').on('click', function () {
     document.querySelector('#btnGroupDrop1 i').style.color = '#373a3c';
     document.querySelector('#bellValue').classList.remove('bg-danger');
     document.querySelector('#bellValue').classList.add('bg-secondary');
