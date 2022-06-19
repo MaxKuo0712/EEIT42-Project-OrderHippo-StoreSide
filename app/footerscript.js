@@ -54,7 +54,7 @@ window.onbeforeunload = () => {
 
 if (localStorage.getItem('storeinfo')) {
     websocket.onmessage = (e) => {
-        console.log(e.data);
+        // console.log(e.data);
         receiveMsg(e.data);
     }
     if (!JSON.parse(localStorage.getItem('receiveMsg')) || JSON.parse(localStorage.getItem('receiveMsg')).length == 0) {
@@ -430,13 +430,13 @@ $("a[data-bs-target='#pills-nutrientContent']").on('click', ingredientsTable);
 $("a[data-bs-target='#pills-menu']").on('click', mealIngredients);
 $("a[data-bs-target='#pills-home']").on('click', delay);
 function delay() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
-    $("a[data-bs-target='#pills-home']").attr("disabled", true);//開始讓他不可按
-    $("a[data-bs-target='#pills-home']").css("pointer-events","none");
-    setTimeout(function(){
-    $("a[data-bs-target='#pills-home']").attr("disabled", false);
-    $("a[data-bs-target='#pills-home']").css("pointer-events","auto");
-    }, 1000);
+      
+      $("a[data-bs-target='#pills-home']").attr("disabled", true);//開始讓他不可按
+      $("a[data-bs-target='#pills-home']").css("pointer-events","none");
+      setTimeout(function(){
+        $("a[data-bs-target='#pills-home']").attr("disabled", false);
+        $("a[data-bs-target='#pills-home']").css("pointer-events","auto");
+      }, 1000);
 }
 var Chart3;
 var Chart4;
@@ -449,7 +449,6 @@ var Chart10;
 
 //首頁頁面處理
 function Homepage() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     //首頁銷售前三//分析資料-前10熱賣
     $('#pills-home ol').empty();
     $('#pills-home ul').empty();
@@ -671,7 +670,6 @@ Homepage();
 
 //分析資料頁面處理
 function Analyzepage() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     $.ajax({
         url: `https://${postName}/api/${storeId}/vsalerank?token=${newToken}`,
         method: 'GET',
@@ -1026,7 +1024,7 @@ function Analyzepage() {
 }
 //訂單管理頁面處理
 function Orderpage() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
+
     //1:orderPreview 2:orderAfteview 4:orderCancel 3:orderComplete
     $.ajax({
         url: `https://${postName}/api/${storeId}/vorderdisplay?token=${newToken}`,
@@ -1428,7 +1426,6 @@ $('#cancelOrder').on('click', Orderpage)
 $('#completeOrder').on('click', Orderpage)
 //顧客管理頁面處理
 function Memberpage() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     $.ajax({
         url: `https://${postName}/api/${storeId}/users?token=${newToken}`,
         method: 'GET',
@@ -1477,7 +1474,6 @@ function Memberpage() {
 
 //對帳單頁面處理
 function ReconciliationStatementpage() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     $('#tablepayments').bootstrapTable({
         url: `https://${postName}/api/${storeId}/payments?token=${newToken}`,         //請求後臺的 URL（*）
         striped: false,
@@ -1559,7 +1555,6 @@ function ReconciliationStatementpage() {
 // $('#couponBtn').on('click',couponTable )
 //廣播與優惠卷設定
 function couponTable() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     document.getElementById('couponName').value = "";
     document.getElementById('couponText').value = "";
     var couponid = ""
@@ -1723,7 +1718,6 @@ function couponTable() {
 // 
 
 function broadcastTable() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     document.getElementById('broadcastName').value = "";
     document.getElementById('broadcastText').value = "";
     document.getElementById('broadcastimage').value = "";
@@ -2017,7 +2011,6 @@ function broadcastTable() {
 
 //營養表格 菜單印出營養素 重點輸出  
 function ingredientsTable() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     $('#ingredientsTable').bootstrapTable({
         url: `https://${postName}/api/${storeId}/ingredients?token=${newToken}`,         //請求後臺的 URL（*）
         striped: false,
@@ -2211,7 +2204,6 @@ $("#orderBtn").on("click", function () {
 
 /*找類別*/
 function mealIngredients() {
-    connWebSocket(JSON.parse(localStorage.getItem('storeinfo')).STORE_ID);
     if (document.querySelectorAll('#mealIngredients option').length == 0) {
 
         $.ajax({
