@@ -106,6 +106,7 @@ function receiveMsg(message) {
     let bellValue = document.querySelector("#bellValue");
 
     if (msg == "有一筆新訂單") {
+        console.log(message);
         let receiveInfo = JSON.parse(localStorage.getItem('receiveMsg')) || [];
         receiveInfo.push(receiveMessage);
         localStorage.setItem("receiveMsg", JSON.stringify(receiveInfo));
