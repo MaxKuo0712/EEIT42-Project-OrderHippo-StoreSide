@@ -44,8 +44,9 @@ function connWebSocket(storeInfo) {
 }
 
 function closeWebSocket() {
+    console.log("WebSocket斷線");
     websocket.close();
-}
+  }
 
 window.onbeforeunload = () => {
     closeWebSocket();
